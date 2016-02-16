@@ -6,7 +6,6 @@
 
 int main(int argc, char* argv[]) {
 
-
     // TEST DES FONCTIONNALITES DE BASE
 
     Matrix* m1 = new Matrix(3, 2);
@@ -16,6 +15,8 @@ int main(int argc, char* argv[]) {
             m1->set(x, y, rand()%10);
         }
     }
+
+    cout << *m1 << endl;
 
     m1->show( );
 
@@ -30,7 +31,6 @@ int main(int argc, char* argv[]) {
     m1->mult( -1 );
     
     m1->show( );
-
 
     // TEST DE L'ADDITION DE Matrix DE MEME RANG
 
@@ -51,7 +51,6 @@ int main(int argc, char* argv[]) {
     delete m2;
     delete m3;
 
-
     // TEST DE LA MULTPLICATION DE Matrix
 
     Matrix* m4 = new Matrix(2, 3);
@@ -62,6 +61,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
+    m1->show( );
     m4->show( );
 
     Matrix* m5 = m1->mult( m4 );
@@ -74,4 +74,3 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
