@@ -1,18 +1,25 @@
 #!/usr/bin/make
 # Makefile for opencv compilation
-CC=icpc
+CC=g++
 
-#OPENCV=-I/opt/local/include/ -L/opt/local/lib -lcxcore -lcv -lhighgui
-CFLAGS = -Ofast `pkg-config --cflags opencv`
-LIBS = `pkg-config --libs opencv`
+CFLAGS = -O2 -Wall
+LDFLAGS=
+EXEC=main
 
-all: clean mandelbrot
 
-mandelbrot:
-	$(CC) mandelbrot.cpp -o mandelbrot $(CFLAGS) $(LIBS)
+SRC=./src/main.cpp \
+	./src/complex.cpp
 
-julia:
-	$(CC) julia.cpp -o julia $(OPENCV)
+OBJ= $(SRC:.cpp=.o)
+
+all: $(EXEC)
+
+main: $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -o $@ -c $< $(CFLAGS)
 
 clean:
-	rm -rf *o mandelbrot julia
+	find . -name *.o -exec rm {} \;
+	rm $(EXEC)
